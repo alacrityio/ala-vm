@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in alacrityio/LICENSE.txt
  */
 #include <alaio/vm/allocator.hpp>
 
