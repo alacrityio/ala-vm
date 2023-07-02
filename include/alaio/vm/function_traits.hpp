@@ -2,7 +2,7 @@
 #include <type_traits>
 #include <tuple>
 
-#define EOS_VM_HAS_MEMBER(ARG, NAME)                           \
+#define ALA_VM_HAS_MEMBER(ARG, NAME)                           \
    alaio::vm::detail::overloaded {                             \
         [](auto&& f, std::enable_if_t<std::is_class_v<std::decay_t<decltype(f)>> && \
                         alaio::vm::detail::pass_type<          \
@@ -11,7 +11,7 @@
        }, [](...) constexpr { return false; }                  \
     }(alaio::vm::detail::wrapper_t<decltype(ARG)>{})
 
-#define EOS_VM_HAS_MEMBER_TY(TY, NAME)                         \
+#define ALA_VM_HAS_MEMBER_TY(TY, NAME)                         \
    alaio::vm::detail::overloaded {                             \
         [](auto&& f, std::enable_if_t<std::is_class_v<TY> &&   \
                         alaio::vm::detail::pass_type<          \
@@ -20,7 +20,7 @@
        }, [](...) constexpr { return false; }                  \
     }(alaio::vm::detail::wrapper_t<TY>{})
 
-#define EOS_VM_HAS_TEMPLATE_MEMBER(ARG, NAME)                  \
+#define ALA_VM_HAS_TEMPLATE_MEMBER(ARG, NAME)                  \
    alaio::vm::detail::overloaded {                             \
         [&](auto&& f, std::enable_if_t<std::is_class_v<std::decay_t<decltype(f)>> && \
                         alaio::vm::detail::pass_type<          \
@@ -29,7 +29,7 @@
        }, [](...) constexpr { return false; }                  \
     }(alaio::vm::detail::wrapper_t<decltype(ARG)>{})
 
-#define EOS_VM_HAS_TEMPLATE_MEMBER_TY(TY, NAME)                \
+#define ALA_VM_HAS_TEMPLATE_MEMBER_TY(TY, NAME)                \
    alaio::vm::detail::overloaded {                             \
         [](auto&& f, std::enable_if_t<std::is_class_v<TY> &&   \
                         alaio::vm::detail::pass_type<          \
@@ -73,10 +73,10 @@ namespace alaio { namespace vm {
    }
 
    template <auto FN>
-   inline constexpr static bool is_callable_v = EOS_VM_HAS_MEMBER(AUTO_PARAM_WORKAROUND(FN), operator());
+   inline constexpr static bool is_callable_v = ALA_VM_HAS_MEMBER(AUTO_PARAM_WORKAROUND(FN), operator());
 
    template <typename F>
-   constexpr bool is_callable(F&& fn) { return EOS_VM_HAS_MEMBER(fn, operator()); }
+   constexpr bool is_callable(F&& fn) { return ALA_VM_HAS_MEMBER(fn, operator()); }
 
    namespace detail {
       template <bool Decay, typename R, typename... Args>

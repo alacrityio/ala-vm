@@ -33,11 +33,11 @@ namespace alaio { namespace vm {
          // Non-conforming: Only allows pointers, not any contiguous iterator.
          // Implementing a conforming version of this constructor requires C++20.
          inline constexpr span(pointer first, std::size_t len) : first_elem(first), last_elem(first + len) {
-            EOS_VM_ASSERT(Extent == dynamic_extent || Extent == size(), span_exception, "Wrong size for span with static extent");
+            ALA_VM_ASSERT(Extent == dynamic_extent || Extent == size(), span_exception, "Wrong size for span with static extent");
          }
          inline constexpr span(pointer first, pointer last) : first_elem(first), last_elem(last) {
-            EOS_VM_ASSERT(last >= first, span_exception, "last iterator < first iterator");
-            EOS_VM_ASSERT(Extent == dynamic_extent || Extent == size(), span_exception, "Wrong size for span with static extent");
+            ALA_VM_ASSERT(last >= first, span_exception, "last iterator < first iterator");
+            ALA_VM_ASSERT(Extent == dynamic_extent || Extent == size(), span_exception, "Wrong size for span with static extent");
          }
 
          template <std::size_t N, typename Enable = std::enable_if_t<(Extent == dynamic_extent || N == Extent)>>
@@ -75,18 +75,18 @@ namespace alaio { namespace vm {
          inline constexpr bool empty() const noexcept { return size() == 0; }
 
          inline constexpr span<T, dynamic_extent> first(std::size_t len) const {
-            EOS_VM_ASSERT(len <= size(), span_exception, "length overflows span");
+            ALA_VM_ASSERT(len <= size(), span_exception, "length overflows span");
             return {first_elem, first_elem + len};
          }
 
          inline constexpr span<T, dynamic_extent> last(std::size_t len) const {
-            EOS_VM_ASSERT(len <= size(), span_exception, "length underflows span");
+            ALA_VM_ASSERT(len <= size(), span_exception, "length underflows span");
             return {last_elem - len, last_elem};
          }
 
          inline constexpr span<T, dynamic_extent> subspan(std::size_t offset, std::size_t len = dynamic_extent) const {
             if(len == dynamic_extent) len = size() - offset;
-            EOS_VM_ASSERT(first_elem + offset + len <= last_elem, span_exception, "length overflows span");
+            ALA_VM_ASSERT(first_elem + offset + len <= last_elem, span_exception, "length overflows span");
             return {first_elem + offset, len};
          }
 

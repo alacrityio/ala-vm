@@ -8,7 +8,7 @@ using namespace alaio;
 using namespace alaio::vm;
 
 /**
- * Simple implementation of an interpreter using eos-vm.
+ * Simple implementation of an interpreter using ala-vm.
  */
 int main(int argc, char** argv) {
    // Thread specific `allocator` used for wasm linear memory.
@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
       bkend.execute_all(wd);
 
    } catch ( const alaio::vm::exception& ex ) {
-      std::cerr << "eos-vm interpreter error\n";
+      std::cerr << "ala-vm interpreter error\n";
       std::cerr << ex.what() << " : " << ex.detail() << "\n";
    }
    return 0;

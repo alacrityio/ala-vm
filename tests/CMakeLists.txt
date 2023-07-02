@@ -1,5 +1,5 @@
 # #############
-# Defines unit tests, spec tests and fuzz tests for eos-vm.
+# Defines unit tests, spec tests and fuzz tests for ala-vm.
 # ############
 option(ENABLE_TESTS "enable building of unit tests, spec tests." ON)
 cmake_dependent_option(ENABLE_FUZZ_TESTS "enable fuzz testing" OFF "ENABLE_TESTS" ON)
@@ -74,15 +74,15 @@ add_spec_test_impl(e_memory ${CMAKE_CURRENT_SOURCE_DIR}/spec/extra/memory.wast)
 add_spec_test_impl(e_module ${CMAKE_CURRENT_SOURCE_DIR}/spec/extra/module.wast)
 add_spec_test_impl(e_table ${CMAKE_CURRENT_SOURCE_DIR}/spec/extra/table.wast)
 
-add_executable( eos_vm_spec_tests main.cpp ${SPEC_TESTS} )
-target_link_libraries( eos_vm_spec_tests eos-vm Catch2::Catch2 )
-target_include_directories( eos_vm_spec_tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
-target_include_directories( eos_vm_spec_tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include )
-target_include_directories( eos_vm_spec_tests PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/spec )
+add_executable( ala_vm_spec_tests main.cpp ${SPEC_TESTS} )
+target_link_libraries( ala_vm_spec_tests ala-vm Catch2::Catch2 )
+target_include_directories( ala_vm_spec_tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
+target_include_directories( ala_vm_spec_tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include )
+target_include_directories( ala_vm_spec_tests PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/spec )
 
-target_compile_definitions(eos_vm_spec_tests PUBLIC -DCATCH_CONFIG_NO_POSIX_SIGNALS)
+target_compile_definitions(ala_vm_spec_tests PUBLIC -DCATCH_CONFIG_NO_POSIX_SIGNALS)
 
-catch_discover_tests( eos_vm_spec_tests )
+catch_discover_tests( ala_vm_spec_tests )
 
 endif(ENABLE_SPEC_TESTS)
 
@@ -121,7 +121,7 @@ add_executable(unit_tests main.cpp
                           backend_tests.cpp
                           vector_tests.cpp)
 
-target_link_libraries(unit_tests eos-vm Catch2::Catch2)
+target_link_libraries(unit_tests ala-vm Catch2::Catch2)
 
 # ##############
 # disable catch2 from installing it's own signal handlers

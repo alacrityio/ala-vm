@@ -34,20 +34,20 @@ struct example_host_methods {
 struct cnv : type_converter<example_host_methods> {
    using type_converter::type_converter;
    using type_converter::from_wasm;
-   EOS_VM_FROM_WASM(bool, (uint32_t value)) { return value ? 1 : 0; }
-   EOS_VM_FROM_WASM(char*, (void* ptr)) { return static_cast<char*>(ptr); }
-   EOS_VM_FROM_WASM(const char*, (void* ptr)) { return static_cast<char*>(ptr); }
+   ALA_VM_FROM_WASM(bool, (uint32_t value)) { return value ? 1 : 0; }
+   ALA_VM_FROM_WASM(char*, (void* ptr)) { return static_cast<char*>(ptr); }
+   ALA_VM_FROM_WASM(const char*, (void* ptr)) { return static_cast<char*>(ptr); }
 };
 
-EOS_VM_PRECONDITION(test_name,
-      EOS_VM_INVOKE_ON(const char*, [&](auto&& nm, auto&&... rest) {
+ALA_VM_PRECONDITION(test_name,
+      ALA_VM_INVOKE_ON(const char*, [&](auto&& nm, auto&&... rest) {
          std::string s = nm;
-         if (s == "eos-vm2")
+         if (s == "ala-vm2")
             throw "failure";
    }))
 
 /**
- * Simple implementation of an interpreter using eos-vm.
+ * Simple implementation of an interpreter using ala-vm.
  */
 int main(int argc, char** argv) {
    if (argc < 4) {
@@ -82,6 +82,6 @@ int main(int argc, char** argv) {
       bkend(ehm, "env", "apply", (uint64_t)std::atoi(argv[1]), (uint64_t)std::atoi(argv[2]),
             (uint64_t)std::atoi(argv[3]));
 
-   } catch (...) { std::cerr << "eos-vm interpreter error\n"; }
+   } catch (...) { std::cerr << "ala-vm interpreter error\n"; }
    return 0;
 }

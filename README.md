@@ -48,7 +48,7 @@ In addition to these core data types, some of the special purpose allocators uti
 
 Because of the utilization of guard paging for the memory operations, host function calls that execute natively don't have to explicitly validate pointers that are passed into these functions if access outside of the sandboxed memory occurs, please note special care should be made to ensure that the host function can fail hard, i.e. not call destructors and have no negative impact.
 
-At no point during parsing or evaluation does EOS-VM use unbounded recursion or loops, everything is tightly bound to limit or eliminate the ability for a bad or corrupt Wasm to cause a crash or infinitely hang the machine.
+At no point during parsing or evaluation does ALA-VM use unbounded recursion or loops, everything is tightly bound to limit or eliminate the ability for a bad or corrupt Wasm to cause a crash or infinitely hang the machine.
 
 All of these solutions are transparent to the developer and allow for more succinct functions that are not cluttered with external checks and only the core logic is needed in most places.
 
@@ -70,7 +70,7 @@ With the exception of the softfloat library, which is an external dependency, **
 
 Given the needs of the end user, integration can be as simple as pointing to the include directory.
 
-**EOS-VM** utilizes **CMake** which allows integration into a project to be as little as adding `eos-vm` to the list of targets in the `target_link_libraries`.
+**ALA-VM** utilizes **CMake** which allows integration into a project to be as little as adding `ala-vm` to the list of targets in the `target_link_libraries`.
 
 If the need is only single-threaded a self-contained backend type is defined for the user to encapsulate all the components needed, which allows for source code integration to be constructing an instance of that type and adding "host functions" to the `registered_host_functions`. Registering the host functions is as easy as calling a function with the function/member pointer and supplying the Wasm module name and function name.
 
@@ -78,12 +78,12 @@ If multi-threaded execution is needed (i.e. multiple backends running at once), 
 
 ## Highly Extensible Design
 
-Given the **EOS-VM** variant type and visitor system, new backends with custom logic can be easily defined and allows the same level of flexibility and code reuse as a much more heavyweight OOP **Visitor** or **Listener** design.
+Given the **ALA-VM** variant type and visitor system, new backends with custom logic can be easily defined and allows the same level of flexibility and code reuse as a much more heavyweight OOP **Visitor** or **Listener** design.
 
-Since the design of **EOS-VM** is component based, with each component being very self-contained, new backends or tools for Wasm can be crafted from previously defined components while only needing to define the logic for the extended functionality that is needed, with very little, to no, boilerplate needed.
+Since the design of **ALA-VM** is component based, with each component being very self-contained, new backends or tools for Wasm can be crafted from previously defined components while only needing to define the logic for the extended functionality that is needed, with very little, to no, boilerplate needed.
 
 Extensions to Wasm itself can be made by simply defining the new section (aka C++ class field) for the module and the function needed to parse an element of that section. This will allow for tooling to be constructed at a rapid pace for custom Wasms for a multitude of needs (debugging, profiling, etc.).
 
-## Using EOS-VM
+## Using ALA-VM
 
 [Quick Overview](./docs/OVERVIEW.md)
