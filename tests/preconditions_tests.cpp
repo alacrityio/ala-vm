@@ -1,12 +1,12 @@
-#include <eosio/vm/backend.hpp>
-#include <eosio/vm/host_function.hpp>
+#include <alaio/vm/backend.hpp>
+#include <alaio/vm/host_function.hpp>
 
 #include "utils.hpp"
 
 #include <catch2/catch.hpp>
 #include <exception>
 
-using namespace eosio::vm;
+using namespace alaio::vm;
 
 static int check = 0;
 static int check2 = 0;

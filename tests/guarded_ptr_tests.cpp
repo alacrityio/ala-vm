@@ -1,8 +1,8 @@
-#include <eosio/vm/guarded_ptr.hpp>
+#include <alaio/vm/guarded_ptr.hpp>
 
 #include <catch2/catch.hpp>
 
-using namespace eosio::vm;
+using namespace alaio::vm;
 
 struct S { int value; };
 

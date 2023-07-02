@@ -1,4 +1,4 @@
-#include <eosio/vm/backend.hpp>
+#include <alaio/vm/backend.hpp>
 #include <iostream>
 #include <iomanip>
 #include <cctype>
@@ -26,7 +26,7 @@ struct nm_debug_info {
    std::vector<uint32_t> function_offsets;
 };
 
-eosio::vm::guarded_vector<uint8_t>* find_export_name(eosio::vm::module& mod, uint32_t idx) {
+alaio::vm::guarded_vector<uint8_t>* find_export_name(alaio::vm::module& mod, uint32_t idx) {
    if(mod.names && mod.names->function_names) {
       for(uint32_t i = 0; i < mod.names->function_names->size(); ++i) {
          if((*mod.names->function_names)[i].idx == idx) {
@@ -35,7 +35,7 @@ eosio::vm::guarded_vector<uint8_t>* find_export_name(eosio::vm::module& mod, uin
       }
    }
    for(uint32_t i = 0; i < mod.exports.size(); ++i) {
-      if(mod.exports[i].index == idx && mod.exports[i].kind == eosio::vm::Function) {
+      if(mod.exports[i].index == idx && mod.exports[i].kind == alaio::vm::Function) {
          return &mod.exports[i].field_str;
       }
    }
@@ -92,7 +92,7 @@ int main(int argc, const char** argv) {
 
    std::vector<std::string> function_names;
 
-   using namespace eosio::vm;
+   using namespace alaio::vm;
    auto code = read_wasm(filename);
    nm_debug_info info;
    module mod;

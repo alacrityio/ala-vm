@@ -1,11 +1,11 @@
-#include <eosio/vm/backend.hpp>
-#include <eosio/vm/error_codes.hpp>
-#include <eosio/vm/watchdog.hpp>
+#include <alaio/vm/backend.hpp>
+#include <alaio/vm/error_codes.hpp>
+#include <alaio/vm/watchdog.hpp>
 
 #include <iostream>
 
-using namespace eosio;
-using namespace eosio::vm;
+using namespace alaio;
+using namespace alaio::vm;
 
 /**
  * Simple implementation of an interpreter using eos-vm.
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
       // Execute any exported functions provided by the wasm.
       bkend.execute_all(wd);
 
-   } catch ( const eosio::vm::exception& ex ) {
+   } catch ( const alaio::vm::exception& ex ) {
       std::cerr << "eos-vm interpreter error\n";
       std::cerr << ex.what() << " : " << ex.detail() << "\n";
    }

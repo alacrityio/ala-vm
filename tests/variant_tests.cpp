@@ -1,9 +1,9 @@
-#include <eosio/vm/variant.hpp>
+#include <alaio/vm/variant.hpp>
 
 #include <catch2/catch.hpp>
 
-using namespace eosio;
-using namespace eosio::vm;
+using namespace alaio;
+using namespace alaio::vm;
 
 TEST_CASE("Testing variant with stateless class", "[variant_stateless_tests]") {
    struct vis {

@@ -7,10 +7,10 @@
 
 #include <catch2/catch.hpp>
 
-#include <eosio/vm/vector.hpp>
+#include <alaio/vm/vector.hpp>
 
-using namespace eosio;
-using namespace eosio::vm;
+using namespace alaio;
+using namespace alaio::vm;
 
 TEST_CASE( "unmanaged_vector tests", "[unmanaged_vector_tests]") {
    {

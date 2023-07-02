@@ -5,11 +5,11 @@
 
 #include <catch2/catch.hpp>
 
-#include <eosio/vm/leb128.hpp>
-#include <eosio/vm/types.hpp>
+#include <alaio/vm/leb128.hpp>
+#include <alaio/vm/types.hpp>
 
-using namespace eosio;
-using namespace eosio::vm;
+using namespace alaio;
+using namespace alaio::vm;
 
 TEST_CASE("Testing varuint", "[varuint_tests]") { 
    {

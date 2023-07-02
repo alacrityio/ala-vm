@@ -1,8 +1,8 @@
-#include <eosio/vm/backend.hpp>
+#include <alaio/vm/backend.hpp>
 
 #include <catch2/catch.hpp>
 
-using namespace eosio::vm;
+using namespace alaio::vm;
 
 #include "utils.hpp"
 
@@ -48,8 +48,8 @@ static wasm_code reentry_wasm = {
 
 BACKEND_TEST_CASE("test reentry", "[reentry]") {
    struct test_runner;
-   using rhf_t = eosio::vm::registered_host_functions<test_runner>;
-   using backend_t = eosio::vm::backend<rhf_t, TestType>;
+   using rhf_t = alaio::vm::registered_host_functions<test_runner>;
+   using backend_t = alaio::vm::backend<rhf_t, TestType>;
    struct test_runner {
       backend_t* bkend;
       uint32_t test_func_0(uint32_t val) {
